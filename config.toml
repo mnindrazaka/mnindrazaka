@@ -66,7 +66,7 @@ weight = 2
 # home
 home = "Home"
 # logo
-logo = "images/logo.svg"
+# logo = "images/logo.svg"
 # meta data
 author = "Themefisher"
 description = "This is meta description"
@@ -98,7 +98,7 @@ image = "images/banner/illustration.svg"
 
 ######################## call to action ###############################
 [params.cta]
-enable = true
+enable = false
 image = "images/hugo-muscot.svg"
 title = "Get the best hugo templates"
 description = "Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus."
