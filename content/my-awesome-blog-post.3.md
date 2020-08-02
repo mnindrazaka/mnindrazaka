@@ -1,7 +1,7 @@
 +++
 title = "My awesome blog post"
 image = "/images/post/post-3.jpg"
-author = "John Doe"
+author = "M. Nindra Zaka"
 date = 2019-11-07T05:00:00Z
 description = "This is meta description"
 categories = ["Hugo"]

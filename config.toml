@@ -2,7 +2,7 @@
 baseURL = "https://mnindrazaka.netlify.app/"
 languageCode = "en-us"
 # site title 
-title = "Northendlab | Blog Template"
+title = "M. Nindra Zaka"
 # theme
 theme = "northendlab-hugo"
 # post pagination
@@ -92,7 +92,7 @@ enable = true
 ####################### banner #######################################
 [params.banner]
 bgImage = "images/banner/banner-bg.svg"
-title = "Hi, I'm John Smith Doe. <br> I help people make the  worlds best software"
+title = "Hi, I'm M. Nindra Zaka. <br> I love to make impact for better world"
 image = "images/banner/illustration.svg"
 
 
@@ -111,13 +111,10 @@ link = "https://gethugothemes.com/shop/"
 ############################## Social Site ##########################
 [[params.social]]
 icon = "ti-facebook" # themify icon pack https://themify.me/themify-icons
-link = "#"
-[[params.social]]
-icon = "ti-twitter-alt" # themify icon pack https://themify.me/themify-icons
-link = "#"
+link = "https://www.facebook.com/mnindrazaka/"
 [[params.social]]
 icon = "ti-github" # themify icon pack https://themify.me/themify-icons
-link = "#"
+link = "https://github.com/mnindrazaka"
 [[params.social]]
 icon = "ti-linkedin" # themify icon pack https://themify.me/themify-icons
-link = "#"
+link = "https://www.linkedin.com/in/mnindrazaka/"
