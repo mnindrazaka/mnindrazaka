@@ -39,32 +39,22 @@ link = "plugins/search/search.js"
 ########################### Navigation ###################################
 
 # main menu
-[[menu.main]]
-URL = "contact"
-name = "Contact"
-weight = 1
-
-[[menu.main]]
-URL = "tools"
-name = "tools"
-weight = 2
+# [[menu.main]]
+# URL = "contact"
+# name = "Contact"
+# weight = 1
 
 # footer menu
-[[menu.footer]]
-URL = "contact"
-name = "Contact"
-weight = 1
-
-[[menu.footer]]
-URL = "tools"
-name = "tools"
-weight = 2
+# [[menu.footer]]
+# URL = "contact"
+# name = "Contact"
+# weight = 1
 
 
 ######################### Default Parameters ###########################
 [params]
 # home
-home = "Home"
+# home = "Home"
 # logo
 # logo = "images/logo.svg"
 # meta data
