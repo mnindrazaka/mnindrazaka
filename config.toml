@@ -39,9 +39,15 @@ link = "plugins/search/search.js"
 ########################### Navigation ###################################
 
 # main menu
-# [[menu.main]]
-# URL = "contact"
-# name = "Contact"
+[[menu.main]]
+URL = "article"
+name = "Article"
+
+[[menu.main]]
+URL = "podcast"
+name = "Podcast"
+
+
 # weight = 1
 
 # footer menu
