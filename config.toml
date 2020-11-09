@@ -4,7 +4,7 @@ languageCode = "en-us"
 # site title 
 title = "M. Nindra Zaka"
 # theme
-theme = "northendlab-hugo"
+theme = "northendlab"
 # post pagination
 paginate = "5"
 # post excerpt
@@ -39,13 +39,9 @@ link = "plugins/search/search.js"
 ########################### Navigation ###################################
 
 # main menu
-[[menu.main]]
-URL = "article"
-name = "Article"
-
-[[menu.main]]
-URL = "podcast"
-name = "Podcast"
+# [[menu.main]]
+# URL = "article"
+# name = "Article"
 
 
 # weight = 1
@@ -62,7 +58,7 @@ name = "Podcast"
 # home
 # home = "Home"
 # logo
-# logo = "images/logo.svg"
+logo = "images/logo.svg"
 # meta data
 author = "Themefisher"
 description = "This is meta description"
@@ -88,7 +84,7 @@ enable = true
 ####################### banner #######################################
 [params.banner]
 bgImage = "images/banner/banner-bg.svg"
-title = "Hi, I'm M. Nindra Zaka. <br> I love to make impact for better world"
+title = "Hi, I'm M. Nindra Zaka. <br>I love to absorb knowledge and redistribute it"
 image = "images/banner/illustration.svg"
 
 
