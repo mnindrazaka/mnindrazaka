@@ -9,24 +9,85 @@ type = "post"
 
 +++
 
-Are you Developer and recently started your own business and Already made a website to ensure online presence and wants to reach more people. but you are not getting as much as response from your targeted customer or you are unable to reach them. SEO(Search engine optimization)is the cheapest way to reach your customer or client. After 2000 the Internet is more easy access to common people and most of the netizens to find out information search on google/yahoo/bing like a search engine. So if your site ranks at the top of the SERP for your target keywords then sure you will get more valuable traffic to your site and it will help you a lot to grow your business.
+One problem that has to be faced by the new engineer when learning about React for the first time is understanding what is JSX and why we need it. When someone asks me to teach them about react, I always hard to explain JSX
 
-### Todays, HTML is generated in browser by javascript
+Last week, I join the Epic React course created by Kent C Dodds. He explained how we can smoothly move from HTML to JSX, and he did an awesome job explaining it. After I finish the React fundamental topic, now I clearly understand what is JSX and why we need that. Also, if anyone asks me about JSX, I will never confuse about how to explain it to them
 
-Above Paragraph, you see SERP or Keywords that are common SEO Term so Before starting learning SEO let's learn the term used by the SEO expert. It will smoothen your learning journey. Or if you are wishing to hire an SEO guy it will help you his task he/she doing and understand he/she going on the right path. So not making delay let dive…
+So, when you come to me and ask me about JSX. This is how I will explain it
+
+### Todays, HTML is generated in the browser by javascript
+
+Back in the old days, HTML is generated on the server-side and sent to the client browser. So that the document sent by the server is containing complete HTML structure
+
+But today, the server is just sending a prototype structure of HTML, and let the frontend framework generate the complete HTML structure on the client-side
 
 ### Programmatically add HTML element with javascript
 
-**Algorithm:** “Algorithm is a process or set of rules to be followed in calculations or other problem-solving operations, especially by a computer.” It is its definition. In SEO we basically mean A very sophisticated and complex program used by the search engine to find out data and indexing it, And when a user gives a data query this program also decides the best result to place in the SERP in order. All search engines use multiple algorithms combination on their data collection and result giving process in different stages.
+If the server just sending a prototype structure of HTML, so in the client, we can generate the complete structure with javascript. So, how can we do that? We can simply use these javascript DOM API to create a new element
 
-### Lets do it in React way
+```html
+<script>
+const div = document.createElement('div')
+</script>
+```
 
-**Algorithm Change:** All the search engine service providers always try to give the best results to their users. So they always working on updating, refreshing or making and implementing new algorithms. The search engine service provider never revealed the exact date of rolling out any updates or new algorithms to make an effective date. Normally they give a boundary of time like this week or this month, we are going to rolling out a major update or applying new this algorithm. They give this new algorithm a name and they always call it by the given name. Like, google spider, Google panda, etc. Most of the time After one to two week we can see and understand the update or change impact but sometimes it also happens quicker also.
+After we create an element, we can add it to the browser like this
 
-### Tired of writing many syntax ? you can use JSX now
+```javascript
+document.body.append(div);
+```
 
-* Algorithm Update: Search Engines regularly making minor changes in their system they normally don’t give an official announcement. But SEO related blogs and journals give the news what the changes made. So Keep update regular visit this industry-related community is important. And when the Major update come You must observe your ranking behavior and if you find you've got the penalty then quickly take necessary step undereating the guidelines given by search engine company.
+It is so simple. We just create an element using `document.createElement` and add it to browser using `document.body.append`. Here is the full HTML code of what we did 
 
-* Algorithm Refresh: Search engine operator after a regular interval re-run the existing algorithm to find out the new spammer.
+```javascript
+const div = document.createElement('div')
+document.body.append(div);
+```
 
-* New Algorithm: Improving search quality google and other search engines regularly bringing new algorithms. All new algorithm has its special purpose to serve in the total search engine working process.
+### Let's do it in React way
+
+Let's get into React, before we use JSX, we can create an element using purely react API. Like this
+
+```javascript
+const div = React.createElement('div')
+```
+
+And then, we can render the element that we created like this
+
+```javascript
+ReactDOM.render(div);
+```
+
+So, without JSX, we can create an element and render it to the browser. Here is the full code
+
+```javascript
+const div = React.createElement('div')
+ReactDOM.render(div);
+```
+
+### Tired of writing many syntaxes? you can use JSX instead
+
+From the previous point, we already know that we can create an element using `React.createElement`. But, imagine that we need to build a full website layout using that function. That will make us extremely tired. So JSX comes to the rescue. Instead of using `React.createElement`, we can use JSX syntax like this 
+
+```html
+<div></div>
+```
+
+
+But, how can our browser understand that syntax? because basically, we write an HTML syntax in javascript. Don't worry, that's why we need babel to translate this
+
+```html
+<div></div>
+```
+
+into this
+
+```javascript
+React.createElement('div')
+```
+
+### Summary
+
+That's what I get from epic react. I love how kent explains JSX. That makes the barrier to understand JSX breakable. And we don't realize that we already learn React and JSX
+
+Want to know more? just go to the Epic React website and purchase the course. It's totally worth it
