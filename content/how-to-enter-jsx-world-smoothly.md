@@ -25,45 +25,72 @@ But today, the server is just sending a prototype structure of HTML, and let the
 
 If the server just sending a prototype structure of HTML, so in the client, we can generate the complete structure with javascript. So, how can we do that? We can simply use these javascript DOM API to create a new element
 
-```html
-<script>
-const div = document.createElement('div')
-</script>
-```
+{{< highlight html "linenos=table,hl_lines=5 6,linenostart=1" >}}
+<html>
+  <body>
+    <div id="root"></div>
+    <script>
+      const div = document.createElement('div');
+      div.textContent = 'Hello World';
+    </script>
+  </body>
+</html>
+{{< /highlight >}}
 
 After we create an element, we can add it to the browser like this
 
-```javascript
-document.body.append(div);
-```
+{{< highlight html "linenos=table,hl_lines=7 8,linenostart=1" >}}
+<html>
+  <body>
+    <div id="root"></div>
+    <script>
+      const div = document.createElement('div');
+      div.textContent = 'Hello World';
+      const root = document.getElementById("root");
+      root.append(div);
+    </script>
+  </body>
+</html>
+{{< /highlight >}}
 
-It is so simple. We just create an element using `document.createElement` and add it to browser using `document.body.append`. Here is the full HTML code of what we did 
-
-```javascript
-const div = document.createElement('div')
-document.body.append(div);
-```
 
 ### Let's do it in React way
 
 Let's get into React, before we use JSX, we can create an element using purely react API. Like this
 
-```javascript
-const div = React.createElement('div')
-```
+{{< highlight html "linenos=table,hl_lines=4 5 7,linenostart=1" >}}
+<html>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+    <script>
+      const div = React.createElement('div', { children: 'Hello World' })
+      const root = document.getElementById("root");
+      root.append(div);
+    </script>
+  </body>
+</html>
+{{< /highlight >}}
 
 And then, we can render the element that we created like this
 
-```javascript
-ReactDOM.render(div);
-```
+{{< highlight html "linenos=table,hl_lines=9,linenostart=1" >}}
+<html>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+    <script>
+      const div = React.createElement('div', { children: 'Hello World' });
+      const root = document.getElementById("root");
+      ReactDOM.render(div, root);
+    </script>
+  </body>
+</html>
+{{< /highlight >}}
 
 So, without JSX, we can create an element and render it to the browser. Here is the full code
-
-```javascript
-const div = React.createElement('div')
-ReactDOM.render(div);
-```
 
 ### Tired of writing many syntaxes? you can use JSX instead
 
@@ -76,15 +103,39 @@ From the previous point, we already know that we can create an element using `Re
 
 But, how can our browser understand that syntax? because basically, we write an HTML syntax in javascript. Don't worry, that's why we need babel to translate this
 
-```html
-<div></div>
-```
+{{< highlight html "linenos=table,hl_lines=6 8,linenostart=1" >}}
+<html>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+    <script type="text/babel">
+      const div = <div>Hello World</div>;
+      const root = document.getElementById("root");
+      ReactDOM.render(div, root);
+    </script>
+  </body>
+</html>
+{{< /highlight >}}
 
 into this
 
-```javascript
-React.createElement('div')
-```
+{{< highlight html "linenos=table,hl_lines=6 8,linenostart=1" >}}
+<html>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+    <script type="text/babel">
+      const div =  React.createElement('div', { children: 'Hello World' });
+      const root = document.getElementById("root");
+      ReactDOM.render(div, root);
+    </script>
+  </body>
+</html>
+{{< /highlight >}}
 
 ### Summary
 
