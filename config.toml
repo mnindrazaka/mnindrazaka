@@ -110,3 +110,18 @@ link = "https://github.com/mnindrazaka"
 [[params.social]]
 icon = "ti-linkedin" # themify icon pack https://themify.me/themify-icons
 link = "https://www.linkedin.com/in/mnindrazaka/"
+
+############################## Syntax Highlight ##########################
+[markup]
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ""
+    lineAnchors = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    style = "emacs"
+    tabWidth = 4

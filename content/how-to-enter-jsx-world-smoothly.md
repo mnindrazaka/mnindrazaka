@@ -9,24 +9,174 @@ type = "post"
 
 +++
 
-Are you Developer and recently started your own business and Already made a website to ensure online presence and wants to reach more people. but you are not getting as much as response from your targeted customer or you are unable to reach them. SEO(Search engine optimization)is the cheapest way to reach your customer or client. After 2000 the Internet is more easy access to common people and most of the netizens to find out information search on google/yahoo/bing like a search engine. So if your site ranks at the top of the SERP for your target keywords then sure you will get more valuable traffic to your site and it will help you a lot to grow your business.
+One problem that has to be faced by the new engineer when learning about React for the first time is understanding what is JSX and why we need it. When someone asks me to teach them about react, I always hard to explain JSX
 
-### Todays, HTML is generated in browser by javascript
+Last week, I join the [Epic React](https://epicreact.dev/) course created by [Kent C Dodds](https://twitter.com/kentcdodds). He explained how we can smoothly move from HTML to JSX, and he did an awesome job explaining it. After I finish the React fundamental topic, now I clearly understand what is JSX and why we need that. Also, if anyone asks me about JSX, I will never confuse about how to explain it to them
 
-Above Paragraph, you see SERP or Keywords that are common SEO Term so Before starting learning SEO let's learn the term used by the SEO expert. It will smoothen your learning journey. Or if you are wishing to hire an SEO guy it will help you his task he/she doing and understand he/she going on the right path. So not making delay let dive…
+So, here is my explanation about JSX based on what I get from Epic React. Hopefully, it can help you to feel a smooth learning experience 
+
+### Todays, HTML is generated in the browser by javascript
+
+Back in the old days, HTML is generated on the server-side and sent to the client browser. So that the document sent by the server is containing complete HTML structure
+
+But today, the server is just sending a prototype structure of HTML, and let the frontend framework generate the complete HTML structure on the client-side. For example, here is the HTML sent by the server 
+
+{{< highlight html "linenos=table,hl_lines=3,linenostart=1" >}}
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+{{< /highlight >}}
+
+As we can see here, the server just sending an HTML with an empty div with `id="root"`. So, our job is to generate the rest of the HTML structure on the client with javascript
 
 ### Programmatically add HTML element with javascript
 
-**Algorithm:** “Algorithm is a process or set of rules to be followed in calculations or other problem-solving operations, especially by a computer.” It is its definition. In SEO we basically mean A very sophisticated and complex program used by the search engine to find out data and indexing it, And when a user gives a data query this program also decides the best result to place in the SERP in order. All search engines use multiple algorithms combination on their data collection and result giving process in different stages.
+If the server just sending a prototype structure of HTML, so in the client, we can generate the complete structure with javascript. So, how can we do that? We can simply use javascript DOM API to create a new element
 
-### Lets do it in React way
+{{< highlight html "linenos=table,hl_lines=5 6,linenostart=1" >}}
+<html>
+  <body>
+    <div id="root"></div>
+    <script>
+      const div = document.createElement('div');
+      div.textContent = 'Hello World';
+    </script>
+  </body>
+</html>
+{{< /highlight >}}
 
-**Algorithm Change:** All the search engine service providers always try to give the best results to their users. So they always working on updating, refreshing or making and implementing new algorithms. The search engine service provider never revealed the exact date of rolling out any updates or new algorithms to make an effective date. Normally they give a boundary of time like this week or this month, we are going to rolling out a major update or applying new this algorithm. They give this new algorithm a name and they always call it by the given name. Like, google spider, Google panda, etc. Most of the time After one to two week we can see and understand the update or change impact but sometimes it also happens quicker also.
+We can create a new HTML element with `document.createElement` and passing the kind of element that we want to create. After that, we can fill the content of that element by assigning the `.textContent` property. In that example, we create a div with text content `Hello World`
 
-### Tired of writing many syntax ? you can use JSX now
+Ok, we have done with creating a new element, next job is to add that element in the `root` div element
 
-* Algorithm Update: Search Engines regularly making minor changes in their system they normally don’t give an official announcement. But SEO related blogs and journals give the news what the changes made. So Keep update regular visit this industry-related community is important. And when the Major update come You must observe your ranking behavior and if you find you've got the penalty then quickly take necessary step undereating the guidelines given by search engine company.
+{{< highlight html "linenos=table,hl_lines=7 8,linenostart=1" >}}
+<html>
+  <body>
+    <div id="root"></div>
+    <script>
+      const div = document.createElement('div');
+      div.textContent = 'Hello World';
+      const root = document.getElementById("root");
+      root.append(div);
+    </script>
+  </body>
+</html>
+{{< /highlight >}}
 
-* Algorithm Refresh: Search engine operator after a regular interval re-run the existing algorithm to find out the new spammer.
+First, we get the `root` div element using `document.getElementById` and passing the id of the element that we want to get, which is `root`. And then, we append the div element that we already create before using `.append` 
 
-* New Algorithm: Improving search quality google and other search engines regularly bringing new algorithms. All new algorithm has its special purpose to serve in the total search engine working process.
+### Let's do it in React way
+
+Let's get into React, before we use JSX, we can create an element using purely react API. So, before we refactor the previous code, we need to import react using CDN to our HTML
+
+{{< highlight html "linenos=table,hl_lines=4 5,linenostart=1" >}}
+<html>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+    <script>
+      const div = document.createElement('div');
+      div.textContent = 'Hello World';
+      const root = document.getElementById("root");
+      root.append(div);
+    </script>
+  </body>
+</html>
+{{< /highlight >}}
+
+We need to import two things here. First is `react` (on line 4), we need this package to create a new React element. Second is `react-dom` (on line 5), we need this package to render the element that already created to the DOM
+
+We have done importing react to our HTML file, lets move to the next job to create a new element using React
+
+{{< highlight html "linenos=table,hl_lines=7,linenostart=1" >}}
+<html>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+    <script>
+      const div = React.createElement('div', { children: 'Hello World' })
+      const root = document.getElementById("root");
+      root.append(div);
+    </script>
+  </body>
+</html>
+{{< /highlight >}}
+
+We can create a React element using `React.createElement` and passing the kind of element that we want to create as a first argument. Then, we can add the props of that element as a second argument. In this example, we need to add `Hello World` as text content. So, we add `children` as props of that element 
+
+And then, we can render the element that we created like this
+
+{{< highlight html "linenos=table,hl_lines=9,linenostart=1" >}}
+<html>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+    <script>
+      const div = React.createElement('div', { children: 'Hello World' });
+      const root = document.getElementById("root");
+      ReactDOM.render(div, root);
+    </script>
+  </body>
+</html>
+{{< /highlight >}}
+
+We can use `ReactDOM.render` to put the React element that we already create to the DOM. For the first argument, we need to pass the element that we want to render, which is `div`. For the second argument, we need to pass where we want to put that element, which is `root`
+
+So, without JSX, we can create an element and render it to the browser. To help you understand what going on, here is the side by side comparison of `DOM API` and `React API` that we use before
+
+| DOM API       | React API |           
+| ------------- |:-------------:| 
+| `document.createElement`    | `React.createElement` | 
+| `root.append(div)`     | `React.render(div, root)`      | 
+
+### Tired of writing many syntaxes? you can use JSX instead
+
+From the previous point, we already know that we can create an element using `React.createElement`. But, imagine that we need to build a full website layout using that function. That will make us extremely tired. So JSX comes to the rescue. How if I tell you that instead of using `React.createElement` to create react element, we can use JSX syntax like this 
+
+{{< highlight html "linenos=table,hl_lines=7,linenostart=1" >}}
+<html>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+    <script>
+      const div = <div>Hello World</div>;
+      const root = document.getElementById("root");
+      ReactDOM.render(div, root);
+    </script>
+  </body>
+</html>
+{{< /highlight >}}
+
+On line 7, instead of using `React.createElement`, we use HTML like syntax in javascript. Yes, we already know if that syntax name is `JSX`. 
+
+But, how can our browser understand that `JSX` syntax? because basically, we write an HTML-like syntax in javascript. Don't worry, that's why we need [babel](https://babeljs.io/) to translate that `JSX` syntax to `React.createElement`. So, we need to import babel to our HTML file to translate `JSX` to `React.createElement`
+
+{{< highlight html "linenos=table,hl_lines=6,linenostart=1" >}}
+<html>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+    <script type="text/babel">
+      const div = <div>Hello World</div>;
+      const root = document.getElementById("root");
+      ReactDOM.render(div, root);
+    </script>
+  </body>
+</html>
+{{< /highlight >}}
+
+### Summary
+
+So there it is, `JSX` is a sugar syntax to create a new React element. So, instead of using `React.createElement`, we can use HTML-like syntax that we already familiar with. And, with help of babel, we can translate that `JSX` syntax back to the `React.createElement`. So, the browser still understand what we write
+
+That's what I get from Epic React. I love how Kent explains JSX. That makes the barrier to understand JSX breakable. And we don't realize that we already learn React and JSX
+
+Want to know more? just go to the [Epic React website](https://epicreact.dev/) and purchase the course. It's totally worth it
