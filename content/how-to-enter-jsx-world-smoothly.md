@@ -1,6 +1,5 @@
 +++
 title = "How to Enter JSX World Smoothly"
-image = "/images/post/how-to-enter-jsx-world-smoothly.jpg"
 author = "M. Nindra Zaka"
 date = 2020-11-09T05:00:00Z
 description = "This is meta description"
@@ -9,9 +8,12 @@ type = "post"
 
 +++
 
+{{< figure src="/images/post/how-to-enter-jsx-world-smoothly.jpg" caption="Photo by [Sid Leigh](https://unsplash.com/photos/YxqLwUeS0Bs)" >}}
+
+
 One problem that has to be faced by the new engineer when learning about React for the first time is understanding what is JSX and why we need it. When someone asks me to teach them about react, I always hard to explain JSX
 
-Last week, I join the [Epic React](https://epicreact.dev/) course created by [Kent C Dodds](https://twitter.com/kentcdodds). He explained how we can smoothly move from HTML to JSX, and he did an awesome job explaining it. After I finish the React fundamental topic, now I clearly understand what is JSX and why we need that. Also, if anyone asks me about JSX, I will never confuse about how to explain it to them
+Last week, I joined the [Epic React](https://epicreact.dev/) course created by [Kent C Dodds](https://twitter.com/kentcdodds). He explained how we can smoothly move from HTML to JSX, and he did an awesome job explaining it. After I finish the React fundamental topic, now I clearly understand what is JSX and why we need that. Also, if anyone asks me about JSX, I will never confuse about how to explain it to them
 
 So, here is my explanation about JSX based on what I get from Epic React. Hopefully, it can help you to feel a smooth learning experience 
 
@@ -40,8 +42,8 @@ If the server just sending a prototype structure of HTML, so in the client, we c
   <body>
     <div id="root"></div>
     <script>
-      const div = document.createElement('div');
-      div.textContent = 'Hello World';
+      const newElement = document.createElement('div');
+      newElement.textContent = 'Hello World';
     </script>
   </body>
 </html>
@@ -56,10 +58,10 @@ Ok, we have done with creating a new element, next job is to add that element in
   <body>
     <div id="root"></div>
     <script>
-      const div = document.createElement('div');
-      div.textContent = 'Hello World';
-      const root = document.getElementById("root");
-      root.append(div);
+      const newElement = document.createElement('div');
+      newElement.textContent = 'Hello World';
+      const rootElement = document.getElementById("root");
+      rootElement.append(newElement);
     </script>
   </body>
 </html>
@@ -69,7 +71,7 @@ First, we get the `root` div element using `document.getElementById` and passing
 
 ### Let's do it in React way
 
-Let's get into React, before we use JSX, we can create an element using purely react API. So, before we refactor the previous code, we need to import react using CDN to our HTML
+Let's get into React, before we use JSX, we can create an element using purely React API. So, before we refactor the previous code, we need to import React using CDN to our HTML
 
 {{< highlight html "linenos=table,hl_lines=4 5,linenostart=1" >}}
 <html>
@@ -78,10 +80,10 @@ Let's get into React, before we use JSX, we can create an element using purely r
     <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
     <script>
-      const div = document.createElement('div');
-      div.textContent = 'Hello World';
-      const root = document.getElementById("root");
-      root.append(div);
+      const newElement = document.createElement('div');
+      newElement.textContent = 'Hello World';
+      const rootElement = document.getElementById("root");
+      rootElement.append(div);
     </script>
   </body>
 </html>
@@ -89,7 +91,7 @@ Let's get into React, before we use JSX, we can create an element using purely r
 
 We need to import two things here. First is `react` (on line 4), we need this package to create a new React element. Second is `react-dom` (on line 5), we need this package to render the element that already created to the DOM
 
-We have done importing react to our HTML file, lets move to the next job to create a new element using React
+We have done importing React to our HTML file, lets move to the next job to create a new element using React
 
 {{< highlight html "linenos=table,hl_lines=7,linenostart=1" >}}
 <html>
@@ -98,9 +100,9 @@ We have done importing react to our HTML file, lets move to the next job to crea
     <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
     <script>
-      const div = React.createElement('div', { children: 'Hello World' })
-      const root = document.getElementById("root");
-      root.append(div);
+      const newElement = React.createElement('div', { children: 'Hello World' })
+      const rootElement = document.getElementById("root");
+      rootElement.append(newElement);
     </script>
   </body>
 </html>
@@ -117,26 +119,26 @@ And then, we can render the element that we created like this
     <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
     <script>
-      const div = React.createElement('div', { children: 'Hello World' });
-      const root = document.getElementById("root");
-      ReactDOM.render(div, root);
+      const newElement = React.createElement('div', { children: 'Hello World' });
+      const rootElement = document.getElementById("root");
+      ReactDOM.render(newElement, rootElement);
     </script>
   </body>
 </html>
 {{< /highlight >}}
 
-We can use `ReactDOM.render` to put the React element that we already create to the DOM. For the first argument, we need to pass the element that we want to render, which is `div`. For the second argument, we need to pass where we want to put that element, which is `root`
+We can use `ReactDOM.render` to put the React element that we already create to the DOM. For the first argument, we need to pass the element that we want to render, which is `newElement`. For the second argument, we need to pass where we want to put that element, which is `rootElement`
 
 So, without JSX, we can create an element and render it to the browser. To help you understand what going on, here is the side by side comparison of `DOM API` and `React API` that we use before
 
 | DOM API       | React API |           
 | ------------- |:-------------:| 
 | `document.createElement`    | `React.createElement` | 
-| `root.append(div)`     | `React.render(div, root)`      | 
+| `rootElement.append(newElement)`     | `React.render(newElement, rootElement)`      | 
 
 ### Tired of writing many syntaxes? you can use JSX instead
 
-From the previous point, we already know that we can create an element using `React.createElement`. But, imagine that we need to build a full website layout using that function. That will make us extremely tired. So JSX comes to the rescue. How if I tell you that instead of using `React.createElement` to create react element, we can use JSX syntax like this 
+From the previous point, we already know that we can create an element using `React.createElement`. But, imagine that we need to build a full website layout using that function. It will make us extremely tired. So JSX comes to the rescue. How if I tell you that instead of using `React.createElement` to create react element, we can use JSX syntax like this 
 
 {{< highlight html "linenos=table,hl_lines=7,linenostart=1" >}}
 <html>
@@ -145,9 +147,9 @@ From the previous point, we already know that we can create an element using `Re
     <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
     <script>
-      const div = <div>Hello World</div>;
-      const root = document.getElementById("root");
-      ReactDOM.render(div, root);
+      const newElement = <div>Hello World</div>;
+      const rootElement = document.getElementById("root");
+      ReactDOM.render(newElement, rootElement);
     </script>
   </body>
 </html>
@@ -157,7 +159,7 @@ On line 7, instead of using `React.createElement`, we use HTML like syntax in ja
 
 But, how can our browser understand that `JSX` syntax? because basically, we write an HTML-like syntax in javascript. Don't worry, that's why we need [babel](https://babeljs.io/) to translate that `JSX` syntax to `React.createElement`. So, we need to import babel to our HTML file to translate `JSX` to `React.createElement`
 
-{{< highlight html "linenos=table,hl_lines=6,linenostart=1" >}}
+{{< highlight html "linenos=table,hl_lines=6 7,linenostart=1" >}}
 <html>
   <body>
     <div id="root"></div>
@@ -165,13 +167,15 @@ But, how can our browser understand that `JSX` syntax? because basically, we wri
     <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
     <script type="text/babel">
-      const div = <div>Hello World</div>;
-      const root = document.getElementById("root");
-      ReactDOM.render(div, root);
+      const newElement = <div>Hello World</div>;
+      const rootElement = document.getElementById("root");
+      ReactDOM.render(newElement, rootElement);
     </script>
   </body>
 </html>
 {{< /highlight >}}
+
+We can import babel to our HTML file from CDN, which happens on line 6. Also, don't forget to add `type="text/babel"` on the `script` tag on line 7, this is how we tell babel to compile our script. Babel will create a compiled script on the `head` tag of our HTML file 
 
 ### Summary
 
