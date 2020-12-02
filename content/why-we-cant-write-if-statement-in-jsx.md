@@ -10,21 +10,43 @@ type = "post"
 
 I remember the time when i want to show some element in jsx based on condition. Naturally, if we want to make a condition, we will use if statement. So, our component will look like this : 
 
-```jsx
-// write component with condition
-```
+{{< highlight jsx "linenos=table" >}}
+const Toggle = () => {
+  const [on, setOn] = React.useState(false)
+  
+  const toggle = () => setOn(!on)
+
+  return (
+    <div>
+      <p>the button is { if (on) { return 'on' } else { return 'off' } }</p>
+      <button onClick={toggle}>toggle</button>
+    </div>
+  )
+}
+{{< /highlight >}}
 
 But, after we create an if statement in component return, we start to get some error like this
 
 ```jsx
-// write error here
+Unexpected token (8:25)
 ```
 
 Why we get that error ? because it's technically correct. We want to show that element based on its condition. So, why we get that error ? Ok, lets refactor that if statement using ternary operator
 
-```jsx
-// write component with ternary operator
-```
+{{< highlight jsx "linenos=table" >}}
+const Toggle = () => {
+  const [on, setOn] = React.useState(false)
+  
+  const toggle = () => setOn(!on)
+
+  return (
+    <div>
+      <p>the button is { on ? 'on' : 'off' }</p>
+      <button onClick={toggle}>toggle</button>
+    </div>
+  )
+}
+{{< /highlight >}}
 
 If we try its in code editor, we will notice that its working correctly, but why ? its the same logic, we just change if statement to ternary and its magically working. So here is the explanation that i get from epic react
 
@@ -34,15 +56,15 @@ Before we discuss about why we cant use if statemet in jsx, we have to know [wha
 
 JSX is sugar syntax to help us write `React.createElement()`. So if we write jsx code like this
 
-```jsx
-// example of jsx
-```
+{{< highlight jsx "linenos=table" >}}
+<div>lorem</div>
+{{< /highlight >}}
 
 It will get translated by babel to become like this
 
-```jsx
-// example of React.createElement 
-```
+{{< highlight javascript "linenos=table" >}}
+React.createElement("div", { children: "lorem" })
+{{< /highlight >}}
 
 If you understand what i explained, continue your read, but if you confuse, you can read my detail explanation about jsx
 
@@ -50,15 +72,34 @@ If you understand what i explained, continue your read, but if you confuse, you 
 
 Ok, lets get back to the problem, we want to know why we can't use if statement in JSX. Lets write some component using JSX with if statement within it
 
-```jsx
-// example of jsx with if statement within in
-```
+{{< highlight jsx "linenos=table" >}}
+const Toggle = () => {
+  const [on, setOn] = React.useState(false)
+  
+  const toggle = () => setOn(!on)
+
+  return (
+    <div>
+      <p>the button is { if (on) { return 'on' } else { return 'off' } }</p>
+      <button onClick={toggle}>toggle</button>
+    </div>
+  )
+}
+{{< /highlight >}}
 
 Now, lets think how it will get translated into `React.createElement` syntax, so it will get translated into this
 
-```jsx
-// translated jsx syntax with if statement within in
-```
+{{< highlight jsx "linenos=table" >}}
+const Toggle = () => {
+  const [on, setOn] = React.useState(false);
+
+  const toggle = () => setOn(!on);
+
+  return React.createElement("div", null,React.createElement("p", null, "the button is ", if(on) { return 'on' } else { return 'off' }), React.createElement("button", {
+    onClick: toggle
+  }, "toggle"));
+};
+{{< /highlight >}}
 
 See the problem ? no ? ok, i will help you. The problem is that if statement will write to the `React.createElement` function parameter. And technically, there are no syntax that can't make us write if statement as function parameter. Go try it if you want to proof it. So, this is the problem
 
@@ -66,15 +107,34 @@ See the problem ? no ? ok, i will help you. The problem is that if statement wil
 
 Ok, now lets try if we use ternary statement. Here is the example
 
-```jsx
-// example of jsx with ternary operator statement within in
-```
+{{< highlight jsx "linenos=table" >}}
+const Toggle = () => {
+  const [on, setOn] = React.useState(false)
+  
+  const toggle = () => setOn(!on)
+
+  return (
+    <div>
+      <p>the button is { on ? 'on' : 'off' }</p>
+      <button onClick={toggle}>toggle</button>
+    </div>
+  )
+}
+{{< /highlight >}}
 
 Now, lets translate it into `React.createElement`
 
-```jsx
-// translated jsx syntax with ternary operator statement within in
-```
+{{< highlight jsx "linenos=table" >}}
+const Toggle = () => {
+  const [on, setOn] = React.useState(false);
+
+  const toggle = () => setOn(!on);
+
+  return React.createElement("div", null,React.createElement("p", null, "the button is ", on ? 'on' : 'off'), React.createElement("button", {
+    onClick: toggle
+  }, "toggle"));
+};
+{{< /highlight >}}
 
 You will see that after we translate it, we will use ternary operator in `React.createElement` function parameter. And, technically, we can use ternary operator as function parameter. Again, try it if you want to proof it
 
