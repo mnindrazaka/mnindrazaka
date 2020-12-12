@@ -63,9 +63,9 @@ logo = "images/logo.svg"
 author = "Themefisher"
 description = "This is meta description"
 # google tag manager
-google_tag_manager = "G-WES48PHN4T" # your id
+google_tag_manager = "UA-24699440-3" # your id
 # google analitycs ID
-google_analitycs_id = "G-WES48PHN4T" # your id
+google_analitycs_id = "UA-24699440-3" # your id
 # contact form action
 contact_form_action = "#" # contact form works with : https://formspree.io
 # copyright
