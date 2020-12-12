@@ -5,19 +5,15 @@ date = 2020-11-28T05:00:00Z
 type = "post"
 +++
 
-{{< figure src="/images/post/why-we-cant-write-if-statement-in-jsx.jpg" caption="Photo by [Bruce Mars](https://unsplash.com/photos/xj8qrWvuOEs)" >}}
+{{< figure src="/images/post/why-we-cant-use-if-statement-in-jsx.jpg" caption="Photo by [Bruce Mars](https://unsplash.com/photos/xj8qrWvuOEs)" >}}
 
-I remember the time when i want to show an element in jsx based on condition. At that time, i am still new to React and JSX, i started to think "Ok, i want to show this element based on condition, i think i am gonna write an if statement". So, my component will look like this : 
+I remember the time when i want to show an element in jsx based on condition. At that time, i am still new to React and JSX, i started to think "Ok, i want to show this element based on condition, i think i am gonna use if statement". So, my component will look like this : 
 
-{{< highlight jsx "linenos=table,hl_lines=6"  >}}
+{{< highlight jsx "linenos=table,hl_lines=4"  >}}
 const Toggle = () => {
   const [on, setOn] = React.useState(false)
   const toggle = () => setOn(!on)
-  return (
-    <div>
-      <p>the button is { if (on) { return 'on' } else { return 'off' } }</p>
-      <button onClick={toggle}>toggle</button>
-    </div>
+  return <button onClick={toggle}>the button is { if (on) return 'on' else return 'off' }</button>
   )
 }
 {{< /highlight >}}
@@ -26,7 +22,7 @@ Focus on line 6, on that line, i want to show "on" text if `on` state is `true`,
 but, after i create an if statement in component return, i start to get an error message like this
 
 ```jsx
-Unexpected token (6:25)
+Unexpected token (4:50)
 ```
 
 Why i get that error ? because it's technically correct. I want to show that element based on its condition. So, why i get that error ? Ok, lets refactor that if statement to ternary operator
@@ -35,12 +31,7 @@ Why i get that error ? because it's technically correct. I want to show that ele
 const Toggle = () => {
   const [on, setOn] = React.useState(false)
   const toggle = () => setOn(!on)
-  return (
-    <div>
-      <p>the button is { on ? 'on' : 'off' }</p>
-      <button onClick={toggle}>toggle</button>
-    </div>
-  )
+  return <button onClick={toggle}>the button is { on ? 'on' : 'off' }</button>
 }
 {{< /highlight >}}
 
@@ -70,12 +61,7 @@ Ok, lets get back to the problem, we want to know why we can't use if statement 
 const Toggle = () => {
   const [on, setOn] = React.useState(false)
   const toggle = () => setOn(!on)
-  return (
-    <div>
-      <p>the button is { if (on) { return 'on' } else { return 'off' } }</p>
-      <button onClick={toggle}>toggle</button>
-    </div>
-  )
+  return <button onClick={toggle}>the button is { if (on) return 'on' else return 'off' }</button>
 }
 {{< /highlight >}}
 
@@ -85,9 +71,9 @@ Now, lets think how it will get translated into `React.createElement` syntax, so
 const Toggle = () => {
   const [on, setOn] = React.useState(false);
   const toggle = () => setOn(!on);
-  return React.createElement("div", null,React.createElement("p", null, "the button is ", if(on) { return 'on' } else { return 'off' }), React.createElement("button", {
+  return React.createElement("button", {
     onClick: toggle
-  }, "toggle"));
+  }, "the button is ", if (on) return 'on' else return 'off');
 };
 {{< /highlight >}}
 
@@ -101,12 +87,7 @@ Ok, now lets try if we use ternary operator. Here is the same component but usin
 const Toggle = () => {
   const [on, setOn] = React.useState(false)
   const toggle = () => setOn(!on)
-  return (
-    <div>
-      <p>the button is { on ? 'on' : 'off' }</p>
-      <button onClick={toggle}>toggle</button>
-    </div>
-  )
+  return <button onClick={toggle}>the button is { on ? 'on' : 'off' }</button>
 }
 {{< /highlight >}}
 
@@ -116,9 +97,9 @@ Now, lets translate it into `React.createElement`
 const Toggle = () => {
   const [on, setOn] = React.useState(false);
   const toggle = () => setOn(!on);
-  return React.createElement("div", null,React.createElement("p", null, "the button is ", on ? 'on' : 'off'), React.createElement("button", {
+  return React.createElement("button", {
     onClick: toggle
-  }, "toggle"));
+  }, "the button is ", on ? 'on' : 'off');
 };
 {{< /highlight >}}
 
