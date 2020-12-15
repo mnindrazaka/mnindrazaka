@@ -2,7 +2,7 @@
 title = "How to Enter JSX World Smoothly"
 author = "M. Nindra Zaka"
 date = 2020-11-09T05:00:00Z
-description = "This is meta description"
+# description = "This is meta description"
 # categories = ["Meta Data"]
 type = "post"
 
