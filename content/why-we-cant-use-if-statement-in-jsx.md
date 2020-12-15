@@ -1,7 +1,7 @@
 +++
 title = "Why We Can't Use If Statement In JSX"
 author = "M. Nindra Zaka"
-date = 2020-11-28T05:00:00Z
+date = 2020-12-15T05:00:00Z
 type = "post"
 +++
 
@@ -27,7 +27,7 @@ Unexpected token (4:50)
 
 Why I get that error? I think it's logically correct. I want to display a text based on condition. So, why I get that error ?. Then, I refactor that if statement using ternary operator
 
-```jsx {linenos=table}
+```jsx {linenos=table,hl_lines=[4]}
 const Toggle = () => {
   const [on, setOn] = React.useState(false)
   const toggle = () => setOn(!on)
@@ -41,17 +41,19 @@ And boom ! I notice that it is working correctly. But why? it is using the same 
 
 Before I explain the problem, we need to understand how JSX works. JSX is just a sugar syntax to help us write `React.createElement()` faster. So if we write JSX code like this
 
-```jsx {linenos=table}
-<div id="message">hello world</div>
+```jsx {linenos=table,hl_lines=[2]}
+const name = 'aka'
+<div id="message">hello {name}</div>
 ```
 
 It will get translated by babel and become like this
 
-```javascript {linenos=table}
-React.createElement('div', { id: 'message' }, 'hello world')
+```javascript {linenos=table,hl_lines=[2]}
+const name = 'aka'
+React.createElement('div', { id: 'message' }, 'hello ', name)
 ```
 
-`React.createElement` need 3 parameters. First, is the kind of HTML element you want to render, which is a `div`. Second, the props you want to give to that element, which is `{ id: 'message' }`. And the last, is the children you want to put inside that element, which is `hello world`
+`React.createElement` need 3 parameter or more. The first parameter is the kind of HTML element you want to render, which is a `div`. The second parameter is the props you want to give to that element, which is `{ id: 'message' }`. And for the rest, is the children you want to put inside that element, which is `hello world` and `name` variable. You can put as many parameters as you want, it will considered as children of the element
 
 If you want to know more about this, you can read my detailed explanation about [JSX](https://mnindrazaka.com/how-to-enter-jsx-world-smoothly/)
 
@@ -69,21 +71,22 @@ const Toggle = () => {
 
 Now, let's think about how it will get translated into `React.createElement` syntax. It will get translated into this
 
-```jsx {linenos=table}
+```jsx {linenos=table, hl_lines=[8]}
 const Toggle = () => {
   const [on, setOn] = React.useState(false);
   const toggle = () => setOn(!on);
   return React.createElement(
     "button",
     { onClick: toggle },
-    "the button is ", if (on) return 'on' else return 'off'
+    "the button is ",
+    if (on) return 'on' else return 'off'
   );
 };
 ```
 
-So, the first parameter is `button`, because we want to render a button element. The second parameter is the props `{ onClick: toggle }`. And the last, is a text `the button is ` followed by if statement that will return `on` and `off` text based on a condition
+So, the first parameter is `button`, because we want to render a button element. The second parameter is the props `{ onClick: toggle }`. And for the rest, is the children which is a text `the button is ` and if statement that will return `on` and `off` text based on a condition
 
-See the problem? no ? ok, I will help you. The problem is that the if statement will be written to the `React.createElement` last parameter. And technically, we can't write if statement as a function parameter. So it break our code
+See the problem? no ? ok, I will help you. The problem is that the if statement will be written to the `React.createElement` last parameter (on line 8). And technically, we can't write if statement as a function parameter. So it break our code
 
 ### Ternary operator in JSX
 
@@ -99,7 +102,7 @@ const Toggle = () => {
 
 Now, lets translate it into `React.createElement`
 
-```jsx {linenos=table}
+```jsx {linenos=table, hl_lines=[8]}
 const Toggle = () => {
   const [on, setOn] = React.useState(false)
   const toggle = () => setOn(!on)
@@ -112,7 +115,7 @@ const Toggle = () => {
 }
 ```
 
-You will see that after we translate it, we get a result similar to when we used the if statement. The only difference is it will use the ternary operator in the `React.createElement` last parameter. And, technically, we can use the ternary operator as a function parameter. So our code will work
+You will see that after we translate it, we get a result similar to when we used the if statement. The only difference is it will use the ternary operator in the `React.createElement` last parameter (on line 8). And, technically, we can use the ternary operator as a function parameter. So our code will work
 
 ### Summary
 
