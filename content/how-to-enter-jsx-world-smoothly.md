@@ -2,7 +2,7 @@
 title = "How to Enter JSX World Smoothly"
 author = "M. Nindra Zaka"
 date = 2020-11-09T05:00:00Z
-# description = "This is meta description"
+description = "Understand what and why of JSX"
 # categories = ["Meta Data"]
 type = "post"
 
@@ -10,20 +10,20 @@ type = "post"
 
 {{< figure src="/images/post/how-to-enter-jsx-world-smoothly.jpg" caption="Photo by [Sid Leigh](https://unsplash.com/photos/YxqLwUeS0Bs)" >}}
 
-
 One problem that has to be faced by the new engineer when learning about React for the first time is understanding what is JSX and why we need it. When someone asks me to teach them about react, I always hard to explain JSX
 
 Last week, I joined the [Epic React](https://epicreact.dev/) course created by [Kent C Dodds](https://twitter.com/kentcdodds). He explained how we can smoothly move from HTML to JSX, and he did an awesome job explaining it. After I finish the React fundamental topic, now I clearly understand what is JSX and why we need that. Also, if anyone asks me about JSX, I will never confuse about how to explain it to them
 
-So, here is my explanation about JSX based on what I get from Epic React. Hopefully, it can help you to feel a smooth learning experience 
+So, here is my explanation about JSX based on what I get from Epic React. Hopefully, it can help you to feel a smooth learning experience
 
 ### Todays, HTML is generated in the browser by javascript
 
 Back in the old days, HTML is generated on the server-side and sent to the client browser. So that the document sent by the server is containing complete HTML structure
 
-But today, the server is just sending a prototype structure of HTML, and let the frontend framework generate the complete HTML structure on the client-side. For example, here is the HTML sent by the server 
+But today, the server is just sending a prototype structure of HTML, and let the frontend framework generate the complete HTML structure on the client-side. For example, here is the HTML sent by the server
 
 {{< highlight html "linenos=table,hl_lines=3,linenostart=1" >}}
+
 <html>
   <body>
     <div id="root"></div>
@@ -38,6 +38,7 @@ As we can see here, the server just sending an HTML with an empty div with `id="
 If the server just sending a prototype structure of HTML, so in the client, we can generate the complete structure with javascript. So, how can we do that? We can simply use javascript DOM API to create a new element
 
 {{< highlight html "linenos=table,hl_lines=5 6,linenostart=1" >}}
+
 <html>
   <body>
     <div id="root"></div>
@@ -54,6 +55,7 @@ We can create a new HTML element with `document.createElement` and passing the k
 Ok, we have done with creating a new element, next job is to add that element in the `root` div element
 
 {{< highlight html "linenos=table,hl_lines=7 8,linenostart=1" >}}
+
 <html>
   <body>
     <div id="root"></div>
@@ -67,13 +69,14 @@ Ok, we have done with creating a new element, next job is to add that element in
 </html>
 {{< /highlight >}}
 
-First, we get the `root` div element using `document.getElementById` and passing the id of the element that we want to get, which is `root`. And then, we append the div element that we already create before using `.append` 
+First, we get the `root` div element using `document.getElementById` and passing the id of the element that we want to get, which is `root`. And then, we append the div element that we already create before using `.append`
 
 ### Let's do it in React way
 
 Let's get into React, before we use JSX, we can create an element using purely React API. So, before we refactor the previous code, we need to import React using CDN to our HTML
 
 {{< highlight html "linenos=table,hl_lines=4 5,linenostart=1" >}}
+
 <html>
   <body>
     <div id="root"></div>
@@ -94,6 +97,7 @@ We need to import two things here. First is `react` (on line 4), we need this pa
 We have done importing React to our HTML file, lets move to the next job to create a new element using React
 
 {{< highlight html "linenos=table,hl_lines=7,linenostart=1" >}}
+
 <html>
   <body>
     <div id="root"></div>
@@ -108,11 +112,12 @@ We have done importing React to our HTML file, lets move to the next job to crea
 </html>
 {{< /highlight >}}
 
-We can create a React element using `React.createElement` and passing the kind of element that we want to create as a first argument. Then, we can add the props of that element as a second argument. In this example, we need to add `Hello World` as text content. So, we add `children` as props of that element 
+We can create a React element using `React.createElement` and passing the kind of element that we want to create as a first argument. Then, we can add the props of that element as a second argument. In this example, we need to add `Hello World` as text content. So, we add `children` as props of that element
 
 And then, we can render the element that we created like this
 
 {{< highlight html "linenos=table,hl_lines=9,linenostart=1" >}}
+
 <html>
   <body>
     <div id="root"></div>
@@ -131,16 +136,17 @@ We can use `ReactDOM.render` to put the React element that we already create to 
 
 So, without JSX, we can create an element and render it to the browser. To help you understand what going on, here is the side by side comparison of `DOM API` and `React API` that we use before
 
-| DOM API       | React API |           
-| ------------- |:-------------:| 
-| `document.createElement`    | `React.createElement` | 
-| `rootElement.append(newElement)`     | `React.render(newElement, rootElement)`      | 
+| DOM API                          |                React API                |
+| -------------------------------- | :-------------------------------------: |
+| `document.createElement`         |          `React.createElement`          |
+| `rootElement.append(newElement)` | `React.render(newElement, rootElement)` |
 
 ### Tired of writing many syntaxes? you can use JSX instead
 
-From the previous point, we already know that we can create an element using `React.createElement`. But, imagine that we need to build a full website layout using that function. It will make us extremely tired. So JSX comes to the rescue. How if I tell you that instead of using `React.createElement` to create react element, we can use JSX syntax like this 
+From the previous point, we already know that we can create an element using `React.createElement`. But, imagine that we need to build a full website layout using that function. It will make us extremely tired. So JSX comes to the rescue. How if I tell you that instead of using `React.createElement` to create react element, we can use JSX syntax like this
 
 {{< highlight html "linenos=table,hl_lines=7,linenostart=1" >}}
+
 <html>
   <body>
     <div id="root"></div>
@@ -155,11 +161,12 @@ From the previous point, we already know that we can create an element using `Re
 </html>
 {{< /highlight >}}
 
-On line 7, instead of using `React.createElement`, we use HTML like syntax in javascript. Yes, we already know if that syntax name is `JSX`. 
+On line 7, instead of using `React.createElement`, we use HTML like syntax in javascript. Yes, we already know if that syntax name is `JSX`.
 
 But, how can our browser understand that `JSX` syntax? because basically, we write an HTML-like syntax in javascript. Don't worry, that's why we need [babel](https://babeljs.io/) to translate that `JSX` syntax to `React.createElement`. So, we need to import babel to our HTML file to translate `JSX` to `React.createElement`
 
 {{< highlight html "linenos=table,hl_lines=6 7,linenostart=1" >}}
+
 <html>
   <body>
     <div id="root"></div>
@@ -175,7 +182,7 @@ But, how can our browser understand that `JSX` syntax? because basically, we wri
 </html>
 {{< /highlight >}}
 
-We can import babel to our HTML file from CDN, which happens on line 6. Also, don't forget to add `type="text/babel"` on the `script` tag on line 7, this is how we tell babel to compile our script. Babel will create a compiled script on the `head` tag of our HTML file 
+We can import babel to our HTML file from CDN, which happens on line 6. Also, don't forget to add `type="text/babel"` on the `script` tag on line 7, this is how we tell babel to compile our script. Babel will create a compiled script on the `head` tag of our HTML file
 
 ### Summary
 

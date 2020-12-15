@@ -3,6 +3,7 @@ title = "Why We Can't Use If Statement In JSX"
 author = "M. Nindra Zaka"
 date = 2020-12-15T05:00:00Z
 type = "post"
+description = "Understanding why if statement can't be used in JSX"
 +++
 
 {{< figure src="/images/post/why-we-cant-use-if-statement-in-jsx.jpg" caption="Photo by [Bruce Mars](https://unsplash.com/photos/xj8qrWvuOEs)" >}}
@@ -35,7 +36,7 @@ const Toggle = () => {
 }
 ```
 
-And boom ! I notice that it is working correctly. But why? it is using the same logic, I just change the if statement to the ternary operator and it is magically working. I was confused and stopped questioning that problem by just using the ternary operator. Fortunately, Kent C Dodds explains the reason in Epic React. So, I just want to share it
+And boom ! I notice that it is working correctly. But why? it is using the same logic, I just change the if statement to the ternary operator and it is magically working. I was confused and stopped questioning that problem by just using the ternary operator. Fortunately, [Kent C Dodds](https://twitter.com/kentcdodds) explains the reason in [Epic React](https://epicreact.dev/). So, I just want to share it
 
 ### JSX is just sugar syntax to React.createElement()
 
