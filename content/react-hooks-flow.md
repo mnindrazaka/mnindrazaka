@@ -98,5 +98,12 @@ Screen is changed, now is the time to run function that we write in `useEffect`
 
 ### Unmount Phase
 
-1. Cleanup Layout Effect
-2. Cleanup Effect
+Unmount phase happen when component is removed from DOM. Here is whats happen
+
+#### 1. Cleanup Layout Effect
+
+Before component removed, React will run cleanup layout effect by running the returned function inside `useLayoutEffect`
+
+#### 2. Cleanup Effect
+
+After running layout effect, React will run cleanup effect by running the returned function inside `useEffect`
