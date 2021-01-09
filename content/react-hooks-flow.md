@@ -10,11 +10,21 @@ description = "Understanding React hooks flow"
 
 Before we enter the world of function component, we have class component instead. On that type of component, we have component lifecycle method. Thats make us understand whats going on in our component. So, here is the order of lifecycle method in a component :
 
-Mount Phase :
+### Mount Phase :
 
-1. componentWillMount
-2. render
-3. componentDidMount
+Mount phase is the phase that happen when component is rendered at the first time. Here is whats happen when a component is mounting :
+
+#### 1. componentWillMount
+
+Before React render the component, it will run special method called `componentWillMount`
+
+#### 2. render
+
+After that, React will run render method in the component to get React object component, compare the result with previous object and get the difference, after that, it will apply the difference to the DOM and paint it to the screen
+
+#### 3. componentDidMount
+
+Component is mounted, and showed in the screen, after that, React will run special method called `componentDidMount`
 
 Update Phase :
 
