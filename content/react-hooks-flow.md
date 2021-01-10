@@ -26,13 +26,29 @@ After that, React will run render method in the component to get React object co
 
 Component is mounted, and showed in the screen, after that, React will run special method called `componentDidMount`
 
-Update Phase :
+### Update Phase :
 
-1. componentWillReceiveProps
-2. shouldComponentUpdate
-3. componentWillUpdate
-4. render
-5. componentDidUpdate
+Update phase is happen when a component is rerendered, whatever its rerendered because of changes of the props, changes of the state, or because the parent component is rerendered. Here is what happen when a component is updating
+
+#### 1. componentWillReceiveProps
+
+When component start to update, it will run method called `componentWillReceiveProps`, this step is where component receive the next props that will be given on the next render
+
+#### 2. shouldComponentUpdate
+
+Before actually update the component, React will run a method called `shouldComponentUpdate`, in this method, we have to return a boolean that indicate whether the component should be update or not. So, basically, we can cancel component update in this method
+
+#### 3. componentWillUpdate
+
+After we decide to update the component in `shouldComponentUpdate`, React will run a method called `componentWillUpdate`, this method will be run before the update actually happen
+
+#### 4. render
+
+After that, React will run render method in the component to get React object component, compare the result with previous object and get the difference, after that, it will apply the difference to the DOM and paint it to the screen
+
+#### 5. componentDidUpdate
+
+So the component is updated and we can see the changes on the screen. After component updated, React will run a method called `componentDidUpdate`, so we can do something after a component updated
 
 Unmount Phase :
 
