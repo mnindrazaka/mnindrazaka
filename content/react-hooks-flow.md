@@ -50,9 +50,13 @@ After that, React will run render method in the component to get React object co
 
 So the component is updated and we can see the changes on the screen. After component updated, React will run a method called `componentDidUpdate`, so we can do something after a component updated
 
-Unmount Phase :
+### Unmount Phase :
 
-1. componentWillUnmount
+Unmount phase happen when component is removed from DOM. Here is whats happen
+
+#### 1. componentWillUnmount
+
+Before react remove the component from virtual dom, it will run a special method called `componentWillUnmount`
 
 The method name is so clear to explain the lifecycle of a component when its in mount, update, and unmount phase. But how about in function component ? does function component has lifecycle ? well, lets talk about it
 
