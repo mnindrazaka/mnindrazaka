@@ -1,72 +1,22 @@
 +++
 title = "React Hooks Flow"
 author = "M. Nindra Zaka"
-date = 2020-12-15T05:00:00Z
+date = 2021-01-17T05:00:00Z
 type = "post"
 description = "Understanding React hooks flow"
 +++
 
 {{< figure src="/images/post/react-hooks-flow.jpg" caption="Photo by [Mike Lewis HeadSmart Media](https://unsplash.com/photos/waAAaeC9hns)" >}}
 
-Before we enter the world of function components, we have a class component instead. On that type of component, we have the component lifecycle method. That makes us understand what is going on in our component. So, here is the order of lifecycle method in a component :
+February 16, 2019, the React team has introduced React hooks, special functions that can make developers use features that previously only available on the class component (e.g, state, lifecycle) in the function component. React hooks make community to migrate from class component to function component
 
-{{< figure src="/images/post/component-lifecycle-functions.png" caption="Photo by [Rangle](https://rangle.github.io/react-training/react-lifecycles/)" >}}
+One of the common hooks is `useEffect` that can enable side effect in function component. So it can imitate the functionality of lifecycle method like `componentWillMount`, `componentDidMount`, `componentWillReceiveProps`, `shouldComponentUpdate`, `componentDidUpdate`, and `componentWillUnmount` that we usually use in class component
 
-### Mount Phase :
-
-Mount phase is the phase that happens when a component is rendered for the first time. Here is what happens when a component is mounting :
-
-#### 1. componentWillMount
-
-Before React render the component, it will run a special method called `componentWillMount`
-
-#### 2. render
-
-React will run the render method in the component to get React object component, compare the result with the previous object and get the difference, after that, it will apply the difference to the DOM and paint it to the screen
-
-#### 3. componentDidMount
-
-The component is mounted, and showed on the screen, after that, React will run a special method called `componentDidMount`
-
-### Update Phase :
-
-Update phase happens when a component is rerendered, whatever it rerendered because of changes of the props, changes of the state, or because the parent component is rerendered. Here is what happens when a component is updating
-
-#### 1. componentWillReceiveProps
-
-When the component starts to update, it will run a method called `componentWillReceiveProps`, this step is where the component receives the next props that will be given on the next render
-
-#### 2. shouldComponentUpdate
-
-Before actually update the component, React will run a method called `shouldComponentUpdate`, in this method, we have to return a boolean that indicates whether the component should be an update or not. So, basically, we can cancel component update in this method
-
-#### 3. componentWillUpdate
-
-After we decide to update the component in `shouldComponentUpdate`, React will run a method called `component will update`, this method will be run before the update actually happen
-
-#### 4. render
-
-React will run the render method in the component to get React object component, compare the result with the previous object and get the difference, after that, it will apply the difference to the DOM and paint it to the screen
-
-#### 5. componentDidUpdate
-
-So the component is updated and we can see the changes on the screen. After the component updated, React will run a method called `componentDidUpdate`, so we can do something after a component updated
-
-### Unmount Phase :
-
-Unmount phase happens when a component is removed from DOM. Here is what happens
-
-#### 1. componentWillUnmount
-
-Before react remove the component from virtual dom, it will run a special method called `componentWillUnmount`
-
-The method name is so clear to explain the lifecycle of a component when it is in the mount, update, and unmount phase. But how about in function component? does the function component has a lifecycle? well, let's talk about it
-
-### What is Hook Flow
-
-Function component has "lifecycle" too, but we do not call it "lifecycle", instead, we call it hooks flow. Function components still have the same phase as the class component, but instead of calling the lifecycle method on each phase, the function component will call useEffect and useLayoutEffect hook on each phase. So let's explain it one by one
+After we replace all lifecycle method with `useEffect`, is that function component still has lifecycle ? The answer is yes, and here is the diagram that explains lifecycle of the function component that we call "Hooks Flow"
 
 {{< figure src="/images/post/hook-flow.png" caption="Photo by [donavon](https://github.com/donavon/hook-flow)" >}}
+
+Confuse ? ok, lets explain it one by one
 
 ### Mount Phase
 
