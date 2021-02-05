@@ -84,7 +84,7 @@ enable = true
 ####################### banner #######################################
 [params.banner]
 bgImage = "images/banner/banner-bg.svg"
-title = "Hi, I'm M. Nindra Zaka. <br>I love to absorb knowledge and redistribute it"
+title = "Hi I'm M. Nindra Zaka. <br>I love to learn new things and share it"
 image = "images/banner/illustration.svg"
 
 
