@@ -1,7 +1,7 @@
 +++
 title = "Persisting React State to Local Storage"
 author = "M. Nindra Zaka"
-date = 2021-01-17T05:00:00Z
+date = 2021-02-07T05:00:00Z
 type = "post"
 description = "How i persist React state to local storage and keep them sync"
 +++
