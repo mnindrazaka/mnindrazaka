@@ -8,7 +8,7 @@ description = "Understanding the Different between .call() and .apply() function
 
 {{< figure src="/images/post/javascript-function-call-and-apply.jpg" caption="Photo by [James Padolsey](https://unsplash.com/photos/fBn27VI9rgc)" >}}
 
-After I finish learning on [Epic React](https://epicreact.dev/), I decide to get a deeper knowledge about React by reading and understanding its code. As [kent c dodds](https://twitter.com/kentcdodds) says in [his article](https://kentcdodds.com/blog/how-getting-into-open-source-has-been-awesome-for-me), the awesome things that happen when we read the open-source code is we know the javascript API that previously we think didn't exist. So, here I will share with you the javascript API that I just learned, `.call()` and `.apply()`
+After I finish learning on [Epic React](https://epicreact.dev/), I decided to get a deeper knowledge about React by reading and understanding [its code](https://github.com/facebook/react). As [kent c dodds](https://twitter.com/kentcdodds) says in [his article](https://kentcdodds.com/blog/how-getting-into-open-source-has-been-awesome-for-me), the awesome things that happen when we read the open-source code is we know the javascript API that previously we think didn't exist. So, here I will share with you the javascript API that I just learned, `.call()` and `.apply()`
 
 ### What is .call() function ?
 
