@@ -1,7 +1,7 @@
 +++
 title = "Javascript Function .call() and .apply()"
 author = "M. Nindra Zaka"
-date = 2021-02-15T05:00:00Z
+date = 2021-02-14T05:00:00Z
 type = "post"
 description = "Understanding the Different between .call() and .apply() function"
 +++
