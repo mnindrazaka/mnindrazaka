@@ -1,16 +1,18 @@
 +++
 title = "Javascript Function .call() and .apply()"
 author = "M. Nindra Zaka"
-date = 2021-02-07T05:00:00Z
+date = 2021-02-15T05:00:00Z
 type = "post"
-description = "Difference between .call() and .apply() in javascript function"
+description = "Understanding the Different between .call() and .apply() function"
 +++
 
 {{< figure src="/images/post/javascript-function-call-and-apply.jpg" caption="Photo by [James Padolsey](https://unsplash.com/photos/fBn27VI9rgc)" >}}
 
-### What is function .call()
+After I finish learning on [Epic React](https://epicreact.dev/), I decide to get a deeper knowledge about React by reading and understanding its code. As [kent c dodds](https://twitter.com/kentcdodds) says in [his article](https://kentcdodds.com/blog/how-getting-into-open-source-has-been-awesome-for-me), the awesome things that happen when we read the open-source code is we know the javascript API that previously we think didn't exist. So, here I will share with you the javascript API that I just learned, `.call()` and `.apply()`
 
-Before we explain about "what is function .call()", lets take a look at following code
+### What is .call() function ?
+
+To understand what is `.call()` function, let's take a look at the following example code
 
 ```javascript {linenos=table}
 const book1 = {
@@ -26,9 +28,9 @@ const book1 = {
 book1.printInfo(); // the book title is Ego is the Enemy and written by Ryan Holiday
 ```
 
-We have an object called `book1`, it has `title` and `author`. Also, it has `printInfo` function that will log the info of the book to console, that function can be used to give information about the summary of the book
+We have an object called `book1`, it has `title`, `author` and a function called `printInfo()` to print the info of the book to console. The `printInfo()` function use `this` keyword to access the `title` and `author` of current book object
 
-After that, we decide to create another object called `book2`, it also has `title` and `author` but with difference value. But, for some reason, it doesn't has `printInfo` function to log its info to console. But yet, we still want to do it
+Next, we create another object called `book2`, it also has `title` and `author` with a different value. But, it doesn't have `printInfo()` function
 
 ```javascript {linenos=table}
 const book2 = {
@@ -37,7 +39,7 @@ const book2 = {
 };
 ```
 
-Since `book2` doesn't has `printInfo` function, how if we can "borrow" the `printInfo` function on `book1` and use it on `book2` ? Take a look at following code
+Since `book2` doesn't has `printInfo()` function, how can we print the info of its property ? can we "borrow" the `printInfo()` function in `book1` and use it for `book2` ? Yes, we can do it using `.call()`. Take a look at following code
 
 ```javascript {linenos=table}
 const book1 = {
@@ -55,14 +57,15 @@ const book2 = {
   author: "Angela Duckworth",
 };
 
+// use .call() to use the function for another object
 book1.printInfo.call(book2); // the book title is Grit : The Power of Passion and Perseverance and written by Angela Duckworth
 ```
 
-We can use another object's function and use it on difference object using `.call()`. We just need to put the object we want to use, for example `book2`
+We can use another object's function and use it on a different object using `.call()`. We just need to pass the object we want to use (for example `book2`) as the `.call()` function argument. So, instead of printing the info of the `book1` object, now it will print the info of the `book2` object
 
 ### .call() with arguments
 
-We also can put arguments when using `.call()` function, here is the example :
+So, how if `printInfo()` function has arguments ? let say, we need to pass the `store` and `price` of the book when we want to print the info of the book :
 
 ```javascript {linenos=table}
 const book1 = {
@@ -76,14 +79,17 @@ const book1 = {
         this.author +
         ". You can buy it on " +
         store +
-        " with " +
+        " for " +
         price
     );
   },
 };
 
-book1.printInfo("amazon", "$10"); // the book title is Ego is the Enemy and written by Ryan Holiday. You can buy it on amazon with $10
+// pass the store and price of the book as function arguments
+book1.printInfo("amazon", "$10"); // the book title is Ego is the Enemy and written by Ryan Holiday. You can buy it on amazon for $10
 ```
+
+So, if `printInfo()` function has arguments, we just need to pass the value when we call it. But, how about if we want to use `printInfo()` function on `book2` object ? We can also pass function arguments when using `.call()` :
 
 ```javascript {linenos=table}
 const book1 = {
@@ -97,7 +103,7 @@ const book1 = {
         this.author +
         ". You can buy it on " +
         store +
-        " with " +
+        " for " +
         price
     );
   },
@@ -108,12 +114,13 @@ const book2 = {
   author: "Angela Duckworth",
 };
 
-book1.printInfo.call(book2, "amazon", "$10"); // the book title is Grit : The Power of Passion and Perseverance and written by Angela Duckworth. You can buy it on amazon with $10
+// use .call() using arguments
+book1.printInfo.call(book2, "amazon", "$10"); // the book title is Grit : The Power of Passion and Perseverance and written by Angela Duckworth. You can buy it on amazon for $10
 ```
 
-### How about function .apply()
+### How about .apply() function ?
 
-`.apply()` is similar with `.call()`, we can use it to use another function in an object to another object. The difference between `.apply()` and `.call()` is the way we pass an arguments to it, we use array in `.apply()`
+`.apply()` is similar with `.call()`, we can use another object's function to another object. The difference between `.apply()` and `.call()` is the way we pass the function arguments to it, we use array in `.apply()`
 
 ```javascript {linenos=table}
 const book1 = {
@@ -127,7 +134,7 @@ const book1 = {
         this.author +
         ". You can buy it on " +
         store +
-        " with " +
+        " for " +
         price
     );
   },
@@ -138,5 +145,9 @@ const book2 = {
   author: "Angela Duckworth",
 };
 
-book1.printInfo.call(book2, ["amazon", "$10"]); // the book title is Grit : The Power of Passion and Perseverance and written by Angela Duckworth. You can buy it on amazon with $10
+// we don't use array as function arguments when using .call()
+book1.printInfo.apply(book2, "amazon", "$10"); // the book title is Grit : The Power of Passion and Perseverance and written by Angela Duckworth. You can buy it on amazon for $10
+
+// we use array as function arguments when using .apply()
+book1.printInfo.apply(book2, ["amazon", "$10"]); // the book title is Grit : The Power of Passion and Perseverance and written by Angela Duckworth. You can buy it on amazon for $10
 ```
