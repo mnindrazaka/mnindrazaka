@@ -1,7 +1,7 @@
 +++
-title = "Javascript Object.freeze() function"
+title = "Javascript Object.freeze() Function"
 author = "M. Nindra Zaka"
-date = 2021-02-16T05:00:00Z
+date = 2021-03-02T05:00:00Z
 type = "post"
 description = "Understanding what is Object.freeze() and why we need it"
 +++
