@@ -125,3 +125,5 @@ link = "https://www.linkedin.com/in/mnindrazaka/"
     noClasses = true
     style = "emacs"
     tabWidth = 4
+  [markup.goldmark.renderer]
+    unsafe= true
