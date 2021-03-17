@@ -1,7 +1,7 @@
 +++
 title = "How React.createElement() works under the hood"
 author = "M. Nindra Zaka"
-date = 2021-03-07T05:00:00Z
+date = 2021-03-17T05:00:00Z
 description = "Step-by-step explanation about the things that happen under the hood when we call React.createElement()"
 type = "post"
 +++

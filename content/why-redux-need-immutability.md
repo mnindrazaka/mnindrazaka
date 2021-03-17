@@ -1,7 +1,7 @@
 +++
 title = "Why Redux Need Immutability"
 author = "M. Nindra Zaka"
-date = 2021-03-06T05:00:00Z
+date = 2021-03-07T05:00:00Z
 type = "post"
 description = "Understanding why redux reducer is not allowed to mutate the previous state and must return a new object"
 +++
